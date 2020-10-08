@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Image-Filter</title>
+</head>
+<body>
+
+<!-- IMAGE -->
+<img src="file:///C:/Users/DELL/Documents/busta.html/image/busta.jpg" style="float:right; height: 500px;" id="img">
+
+<div id="bright">100%</div>
+<input type="range" name="" min="0" max="500" id="slide" value="100">
+<label for="slide">Brightness</label>
+
+<div id="contrast">100%</div>
+<input type="range" name="" min="0" max="500" id="slide1" value="100">
+<label for="slide1">Contrast</label>
+
+<div id="saturate">100%</div>
+<input type="range" name="" min="0" max="500" id="slide2" value="100">
+<label for="slide2">Saturate</label>
+
+<div id="grayscale">0%</div>
+<input type="range" name="" min="0" max="100" id="slide3" value="0">
+<label for="slide3">Gray</label>
+
+<div id="invert">0%</div>
+<input type="range" name="" min="0" max="100" id="slide4" value="0">
+<label for="slide4">Invert</label>
+
+<div id="blur">0px</div>
+<input type="range" name="" min="0" max="100" id="slide5" value="0">
+<label for="slide5">Blur</label>
+
+<div id="opacity">100%</div>
+<input type="range" name="" min="0" max="100" id="slide6" value="0">
+<label for="slide6">Opacity</label><br><br>
+
+<button id="reset">reset-all</button>
+
+<script type="text/javascript">
+
+	let brightness = 100;
+	let contrast = 100;
+	let saturate = 100;
+	let gray = 0;
+	let invert = 0;
+	let blur = 0;
+	let opacity = 100;
+
+	
+	let pic = document.getElementById('img');
+	let resset = document.getElementById('reset');
+	let val =  document.getElementById('bright');
+	let slider =  document.getElementById('slide');
+	let val1 =  document.getElementById('contrast');
+	let slider1 =  document.getElementById('slide1');
+	let val2 =  document.getElementById('saturate');
+	let slider2 =  document.getElementById('slide2');
+	let val3 =  document.getElementById('grayscale');
+	let slider3 =  document.getElementById('slide3');
+	let val4 =  document.getElementById('invert');
+	let slider4 =  document.getElementById('slide4');
+	let val5 =  document.getElementById('blur');
+	let slider5 =  document.getElementById('slide5');
+	let val6 =  document.getElementById('opacity');
+	let slider6 =  document.getElementById('slide6');
+
+
+	function filter (effect, percentage,unit) {
+		if (unit == '%') {
+		pic.style.filter = `${effect}(${percentage}%)`;
+		console.log(`${effect}(${brightness}%)`);
+
+		} else if(unit == 'px') {
+          pic.style.filter = `${effect}(${percentage}px)`;
+		console.log(`${effect}(${brightness}px)`);
+		}
+	}
+
+
+	//reset
+resset.addEventListener("click", function () {
+	location.reload()
+
+})
+	// Brightness
+		slider.addEventListener("input", function () {
+		console.log("the value", slider.value)
+		val.innerHTML = slider.value + "%"
+		brightness = slider.value;
+		filter("brightness", brightness,"%");
+		})
+
+//contract
+		slider1.addEventListener("input", function () {
+		val1.innerHTML = slider1.value + "%"
+		contrast = slider1.value;
+		filter("contrast", contrast,"%");
+		})
+
+//saturate
+		slider2.addEventListener("input", function () {
+		val2.innerHTML = slider2.value + "%"
+		saturate = slider2.value;
+		filter("saturate",saturate,"%")
+		console.log(saturate, saturate)
+		})
+
+//grayscale
+		slider3.addEventListener("input", function () {
+		val3.innerHTML = slider3.value + "%"
+		grayscale = slider3.value;
+		filter("grayscale", grayscale,"%");
+		})
+
+//invert
+		slider4.addEventListener("input", function () {
+		val4.innerHTML = slider4.value + "%"
+		invert = slider4.value;
+		filter("invert", invert,"%");
+		})
+
+//blur
+		slider5.addEventListener("input", function () {
+		val5.innerHTML = slider5.value + "px"
+		blur = slider5.value;
+		filter("blur",blur,"px");
+		})
+
+//opacity
+		slider6.addEventListener("input", function () {
+		val6.innerHTML = 100 - slider6.value + "%";
+		opacity = 100 - slider6.value;
+		filter("opacity", opacity,"%");
+		})
+
+
+
+</script>
+</body>
+</html>
